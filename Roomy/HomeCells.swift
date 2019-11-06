@@ -16,6 +16,7 @@ class HomeCells: UITableViewCell {
     @IBOutlet weak var ImageView2: UIImageView!
     @IBOutlet weak var ImageView3: UIImageView!
     @IBOutlet weak var Price: UILabel!
+    @IBOutlet weak var Description: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

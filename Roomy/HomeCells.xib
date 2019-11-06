@@ -99,6 +99,7 @@
             <connections>
                 <outlet property="Adress0" destination="MWK-qe-NPW" id="daN-YK-5yq"/>
                 <outlet property="Adress1" destination="CgC-ae-rsv" id="n7M-tz-UdH"/>
+                <outlet property="Description" destination="Zey-74-CAI" id="pfX-ua-R2F"/>
                 <outlet property="FlatDescribtion" destination="26v-ZU-3HN" id="ybb-LD-b8T"/>
                 <outlet property="ImageView1" destination="poJ-FU-Kcd" id="8L3-aC-uGN"/>
                 <outlet property="ImageView2" destination="iC2-C3-grL" id="Xkj-um-sMR"/>
