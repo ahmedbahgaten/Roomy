@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
   class SignInVC: UIViewController {
     @IBOutlet weak var SignInBttn: UIButton!
     @IBOutlet weak var OvalView: UIView!
@@ -16,19 +16,40 @@ import UIKit
     
     @IBOutlet weak var OvalView3: UIView!
     @IBOutlet weak var OvalView4: UIView!
+    @IBAction func signInbttn(_ sender: Any) {
+       
+        let parameters = [
+                      "email": "",
+                      "password": ""
+                  ]
+                  let url = "https://roomy-application.herokuapp.com/auth/login"
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: [:]).responseJSON {
+            response in
+            switch (response.result) {
+            case .success:
+                print(response)
+                break
+            case .failure:
+                print(Error.self)
+            }
+    }
+    }
     
     
     
     override  func viewDidLoad() {
         super.viewDidLoad()
-roundedBttnWithShadow(Bttn: SignInBttn)
-       // circleOval(view: OvalView)
-        circleOval(viewType: OvalView)
-        circleOval(viewType: OvalView2)
-        circleOval(viewType: OvalView3)
-        circleOval(viewType: OvalView4)
+        roundedBttnWithShadow(Bttn: SignInBttn)
+        // circleOval(view: OvalView)
+         circleOval(viewType: OvalView)
+         circleOval(viewType: OvalView2)
+         circleOval(viewType: OvalView3)
+         circleOval(viewType: OvalView4)
+        
+        }
+
         // Do any additional setup after loading the view.
-    }
+    
     
     func roundedBttnWithShadow(Bttn: UIButton) {
         Bttn.layer.cornerRadius = Bttn.frame.size.height/2
@@ -51,4 +72,6 @@ roundedBttnWithShadow(Bttn: SignInBttn)
         
     }
 }
+
+
 
