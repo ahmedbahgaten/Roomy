@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fsi-Y2-Z3M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lm8-LD-VWo">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -16,21 +16,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="roo" translatesAutoresizingMaskIntoConstraints="NO" id="nI3-da-lwK">
-                                <rect key="frame" x="132" y="202" width="150" height="54"/>
+                                <rect key="frame" x="132" y="246" width="150" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="C25-yd-82n"/>
                                     <constraint firstAttribute="width" constant="150" id="fMS-RQ-Si0"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Find your roomate" translatesAutoresizingMaskIntoConstraints="NO" id="G5K-LZ-5Fp">
-                                <rect key="frame" x="94" y="276" width="226" height="22"/>
+                                <rect key="frame" x="94" y="320" width="226" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="bhc-0Q-FDb"/>
                                     <constraint firstAttribute="width" constant="226" id="ra9-SU-9W1"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5d91bead039945fcf8048eb6e7133ff4dff67844" translatesAutoresizingMaskIntoConstraints="NO" id="zs7-2U-RMo">
-                                <rect key="frame" x="169.66666666666666" y="83" width="75" height="75"/>
+                                <rect key="frame" x="169.66666666666666" y="127" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="CgR-tP-z0O"/>
                                     <constraint firstAttribute="width" constant="75" id="kFk-Vf-LSD"/>
@@ -66,10 +66,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="yl3-eS-kmv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-108.69565217391305" y="117.1875"/>
+            <point key="canvasLocation" x="801.44927536231887" y="117.1875"/>
         </scene>
         <!--Sign InVC-->
         <scene sceneID="m9k-HY-rfi">
@@ -287,11 +288,13 @@
                         <outlet property="OvalView3" destination="t7z-Sh-dM4" id="DbZ-lK-0hd"/>
                         <outlet property="OvalView4" destination="Xya-Kp-v3E" id="0Rq-mm-M7p"/>
                         <outlet property="SignInBttn" destination="VoP-N3-ao4" id="Bdc-ty-HU8"/>
+                        <outlet property="passwordTxtField" destination="6rL-Pg-zp4" id="zm3-se-fCW"/>
+                        <outlet property="usernameTxtField" destination="N5C-bX-ndd" id="bce-m0-ZD0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k4f-xX-kqU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="727.536231884058" y="117.85714285714285"/>
+            <point key="canvasLocation" x="1521.7391304347827" y="116.51785714285714"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="car-TI-t69">
@@ -394,18 +397,19 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ydy-c3-qke"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Ss8-Jh-n03"/>
                     <connections>
                         <outlet property="signUpBttn" destination="NyX-yd-Uyz" id="poL-UV-qdZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OXx-Af-7UN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1376.8115942028987" y="117.85714285714285"/>
+            <point key="canvasLocation" x="2278" y="117"/>
         </scene>
         <!--HomeVC-->
         <scene sceneID="ppq-q5-VXm">
             <objects>
-                <viewController id="tYR-S7-ohR" customClass="HomeVC" customModule="Roomy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeVC" id="tYR-S7-ohR" customClass="HomeVC" customModule="Roomy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6jK-z0-9S1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -430,7 +434,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axG-N7-swO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2043" y="117"/>
+            <point key="canvasLocation" x="2952.1739130434785" y="116.51785714285714"/>
         </scene>
         <!--ListingVC-->
         <scene sceneID="9fF-wB-HkA">
@@ -486,7 +490,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6aF-zU-Wan" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2710" y="117"/>
+            <point key="canvasLocation" x="3618.840579710145" y="116.51785714285714"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mPY-V6-3or">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xoe-qy-v83" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="e9l-3V-ino">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EK1-Nf-ILO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JCq-69-dyg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-108.69565217391305" y="117.1875"/>
         </scene>
     </scenes>
     <resources>

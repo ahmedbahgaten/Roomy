@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
   class SignInVC: UIViewController {
+    @IBOutlet weak var usernameTxtField: UITextField!
+    @IBOutlet weak var passwordTxtField: UITextField!
     @IBOutlet weak var SignInBttn: UIButton!
     @IBOutlet weak var OvalView: UIView!
     
@@ -17,30 +19,33 @@ import Alamofire
     @IBOutlet weak var OvalView3: UIView!
     @IBOutlet weak var OvalView4: UIView!
     @IBAction func signInbttn(_ sender: Any) {
-       
-        let parameters = [
-                      "email": "",
-                      "password": ""
-                  ]
-                  let url = "https://roomy-application.herokuapp.com/auth/login"
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: [:]).responseJSON {
-            response in
-            switch (response.result) {
-            case .success:
-                print(response)
-                break
-            case .failure:
-                print(Error.self)
+        guard let Email = usernameTxtField.text else {return}
+        guard let Password = passwordTxtField.text else {return}
+        NetworkManager.login(Email: Email, Password: Password) { response in
+          self.showAlert()
+            switch response {
+            case .success(let value):
+                print(value)
+                let storyBoard = UIStoryboard(name: "Main", bundle: nil) // navigating to home screen
+                         let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC")
+                         self.navigationController?.pushViewController(homeViewController, animated: true)
+            case.failure(let Error):
+                print(Error)
             }
+         
+        }
     }
+    func showAlert () {
+        let Alert = UIAlertController(title: "Logged In", message: "Successful", preferredStyle: .alert)
+        let Action = UIAlertAction(title: "Done", style: .default, handler: nil)
+        Alert.addAction(Action)
+        present(Alert,animated: true,completion: nil)
     }
-    
     
     
     override  func viewDidLoad() {
         super.viewDidLoad()
         roundedBttnWithShadow(Bttn: SignInBttn)
-        // circleOval(view: OvalView)
          circleOval(viewType: OvalView)
          circleOval(viewType: OvalView2)
          circleOval(viewType: OvalView3)
