@@ -10,34 +10,39 @@ import UIKit
 import Alamofire
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UITextField!
+    @IBOutlet weak var emailLabel: UITextField!
+    @IBOutlet weak var passwordLabel: UITextField!
     @IBOutlet weak var signUpBttn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         let signUp = SignInVC()
         signUp.roundedBttnWithShadow(Bttn: signUpBttn)
+        self.hideKeyboardWhenTappedAround()
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
-        let parameters = [
-            "name": "" ,
-                          "email": "",
-                          "password": ""
-                      ]
-                      let url = "https://roomy-application.herokuapp.com/signup"
-            AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: [:]).responseJSON {
-                response in
-                switch (response.result) {
-                case .success:
-                    print(response)
-                    break
-                case .failure:
-                    print(Error.self)
-                }
+        guard let name = nameLabel.text else {return}
+        guard let email = emailLabel.text else {return}
+        guard let password = passwordLabel.text else {return}
+        NetworkManager.signUp(name: name, email: email, password: password) { (response) in
+            switch response {
+            case.success(let value):
+                print(value)
+            case.failure(let Error):
+                print(Error)
+            }
         }
-        
     }
-    
+}
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
 
-
-
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

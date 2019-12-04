@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-  class SignInVC: UIViewController {
+class SignInVC: UIViewController {
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
     @IBOutlet weak var SignInBttn: UIButton!
@@ -21,39 +21,32 @@ import Alamofire
     @IBAction func signInbttn(_ sender: Any) {
         guard let Email = usernameTxtField.text else {return}
         guard let Password = passwordTxtField.text else {return}
-        NetworkManager.login(Email: Email, Password: Password) { response in
-          self.showAlert()
+        NetworkManager.login(email: Email, password: Password) { response in
             switch response {
             case .success(let value):
                 print(value)
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil) // navigating to home screen
-                         let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC")
-                         self.navigationController?.pushViewController(homeViewController, animated: true)
+                let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC")
+                self.navigationController?.pushViewController(homeViewController, animated: true)
             case.failure(let Error):
                 print(Error)
             }
-         
+            
         }
-    }
-    func showAlert () {
-        let Alert = UIAlertController(title: "Logged In", message: "Successful", preferredStyle: .alert)
-        let Action = UIAlertAction(title: "Done", style: .default, handler: nil)
-        Alert.addAction(Action)
-        present(Alert,animated: true,completion: nil)
     }
     
     
     override  func viewDidLoad() {
         super.viewDidLoad()
         roundedBttnWithShadow(Bttn: SignInBttn)
-         circleOval(viewType: OvalView)
-         circleOval(viewType: OvalView2)
-         circleOval(viewType: OvalView3)
-         circleOval(viewType: OvalView4)
+        circleOval(viewType: OvalView)
+        circleOval(viewType: OvalView2)
+        circleOval(viewType: OvalView3)
+        circleOval(viewType: OvalView4)
         
-        }
-
-        // Do any additional setup after loading the view.
+    }
+    
+    // Do any additional setup after loading the view.
     
     
     func roundedBttnWithShadow(Bttn: UIButton) {

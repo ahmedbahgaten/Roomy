@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lm8-LD-VWo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fsi-Y2-Z3M">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -334,7 +334,7 @@
                                     <constraint firstAttribute="width" constant="335" id="KvT-Bq-hgT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="leoparady@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j3M-ef-c7z">
                                 <rect key="frame" x="17.666666666666657" y="359" width="335" height="34"/>
@@ -399,6 +399,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ss8-Jh-n03"/>
                     <connections>
+                        <outlet property="emailLabel" destination="j3M-ef-c7z" id="21s-JY-Hi6"/>
+                        <outlet property="nameLabel" destination="7mj-lv-b96" id="koI-jy-LLa"/>
+                        <outlet property="passwordLabel" destination="3va-Ty-ekZ" id="GFM-FR-170"/>
                         <outlet property="signUpBttn" destination="NyX-yd-Uyz" id="poL-UV-qdZ"/>
                     </connections>
                 </viewController>

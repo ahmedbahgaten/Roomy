@@ -21,6 +21,7 @@
 		E2ABCA5823823608002DC068 /* Network Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ABCA5723823608002DC068 /* Network Layer.swift */; };
 		E2ABCA5A2382F3C3002DC068 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ABCA592382F3C3002DC068 /* AuthRouter.swift */; };
 		E2B0992B236AF6D600DE19F9 /* ListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0992A236AF6D600DE19F9 /* ListingViewController.swift */; };
+		E2E9627423968F5A003E4FB1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E9627323968F5A003E4FB1 /* Model.swift */; };
 		F477EE7E20F6BC5EB2CFF028 /* Pods_Roomy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DE3536FE13E3B3F055B9CB9 /* Pods_Roomy.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		E2ABCA5723823608002DC068 /* Network Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Network Layer.swift"; sourceTree = "<group>"; };
 		E2ABCA592382F3C3002DC068 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		E2B0992A236AF6D600DE19F9 /* ListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
+		E2E9627323968F5A003E4FB1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				E2121A702368754D001757B8 /* Info.plist */,
 				E2848DCD236ADF77006DFE74 /* HomeCells.swift */,
 				E2848DCE236ADF77006DFE74 /* HomeCells.xib */,
+				E2E9627323968F5A003E4FB1 /* Model.swift */,
 			);
 			path = Roomy;
 			sourceTree = "<group>";
@@ -119,8 +122,16 @@
 			children = (
 				E2ABCA5723823608002DC068 /* Network Layer.swift */,
 				E2ABCA592382F3C3002DC068 /* AuthRouter.swift */,
+				E2E9627523969629003E4FB1 /* Model */,
 			);
 			path = "Network Manager";
+			sourceTree = "<group>";
+		};
+		E2E9627523969629003E4FB1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +258,7 @@
 				E2121A7723688B1C001757B8 /* SignInViewController.swift in Sources */,
 				E2848DCF236ADF77006DFE74 /* HomeCells.swift in Sources */,
 				E2B0992B236AF6D600DE19F9 /* ListingViewController.swift in Sources */,
+				E2E9627423968F5A003E4FB1 /* Model.swift in Sources */,
 				E2ABCA5823823608002DC068 /* Network Layer.swift in Sources */,
 				E2121A652368754C001757B8 /* SceneDelegate.swift in Sources */,
 			);
