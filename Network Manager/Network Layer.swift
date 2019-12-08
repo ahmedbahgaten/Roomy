@@ -26,11 +26,15 @@ class  NetworkManager {
         let signUpRequest = AuthenticationRouter.signUp(name: name, email: email, password: password)
         AF.request(signUpRequest).responseJSON { (response) in
             switch response.result {
-            case . success(let value):
+            case .success(let value):
                 completionHandler(Result.success(value as! [String:Any]))
-            case.failure(let Error):
+            case .failure(let Error):
                 completionHandler(Result.failure(Error))
             }
         }
+
+    }
+    static func fetchImages () {
+        
     }
 }

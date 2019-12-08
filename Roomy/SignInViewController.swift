@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Kingfisher
 class SignInVC: UIViewController {
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
@@ -33,6 +34,7 @@ class SignInVC: UIViewController {
             }
             
         }
+        
     }
     
     

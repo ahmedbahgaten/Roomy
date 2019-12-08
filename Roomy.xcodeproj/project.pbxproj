@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E200E27A239D3C8300F4EAD6 /* ImageFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200E279239D3C8300F4EAD6 /* ImageFetching.swift */; };
 		E20BF242237C6E1B006AD865 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20BF241237C6E1B006AD865 /* SignUpViewController.swift */; };
 		E2121A632368754C001757B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2121A622368754C001757B8 /* AppDelegate.swift */; };
 		E2121A652368754C001757B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2121A642368754C001757B8 /* SceneDelegate.swift */; };
@@ -29,6 +30,7 @@
 		13B49B26D8A028B2986EDFC1 /* Pods-Roomy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roomy.debug.xcconfig"; path = "Target Support Files/Pods-Roomy/Pods-Roomy.debug.xcconfig"; sourceTree = "<group>"; };
 		5DE3536FE13E3B3F055B9CB9 /* Pods_Roomy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Roomy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83138A7E7ABE6EB59BBFF352 /* Pods-Roomy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Roomy.release.xcconfig"; path = "Target Support Files/Pods-Roomy/Pods-Roomy.release.xcconfig"; sourceTree = "<group>"; };
+		E200E279239D3C8300F4EAD6 /* ImageFetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetching.swift; sourceTree = "<group>"; };
 		E20BF241237C6E1B006AD865 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E2121A5F2368754C001757B8 /* Roomy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roomy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2121A622368754C001757B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,16 +124,9 @@
 			children = (
 				E2ABCA5723823608002DC068 /* Network Layer.swift */,
 				E2ABCA592382F3C3002DC068 /* AuthRouter.swift */,
-				E2E9627523969629003E4FB1 /* Model */,
+				E200E279239D3C8300F4EAD6 /* ImageFetching.swift */,
 			);
 			path = "Network Manager";
-			sourceTree = "<group>";
-		};
-		E2E9627523969629003E4FB1 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2121A672368754C001757B8 /* LeadingViewController.swift in Sources */,
+				E200E27A239D3C8300F4EAD6 /* ImageFetching.swift in Sources */,
 				E2848DCC236ADEF3006DFE74 /* HomeViewController.swift in Sources */,
 				E2ABCA5A2382F3C3002DC068 /* AuthRouter.swift in Sources */,
 				E20BF242237C6E1B006AD865 /* SignUpViewController.swift in Sources */,
