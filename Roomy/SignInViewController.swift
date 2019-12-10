@@ -16,7 +16,6 @@ class SignInVC: UIViewController {
     @IBOutlet weak var OvalView: UIView!
     
     @IBOutlet weak var OvalView2: UIView!
-    
     @IBOutlet weak var OvalView3: UIView!
     @IBOutlet weak var OvalView4: UIView!
     @IBAction func signInbttn(_ sender: Any) {
@@ -25,10 +24,11 @@ class SignInVC: UIViewController {
         NetworkManager.login(email: Email, password: Password) { response in
             switch response {
             case .success(let value):
-                print(value)
                 let storyBoard = UIStoryboard(name: "Main", bundle: nil) // navigating to home screen
                 let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC")
                 self.navigationController?.pushViewController(homeViewController, animated: true)
+                print(value)
+
             case.failure(let Error):
                 print(Error)
             }
@@ -45,6 +45,7 @@ class SignInVC: UIViewController {
         circleOval(viewType: OvalView2)
         circleOval(viewType: OvalView3)
         circleOval(viewType: OvalView4)
+  
         
     }
     

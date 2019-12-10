@@ -16,6 +16,7 @@ class  NetworkManager {
             switch response.result {
             case .success(let value):
                 completionHandler(Result.success(value as! [String:Any]))
+                
             case.failure(let error):
                 completionHandler(Result.failure(error))
                 
@@ -34,7 +35,29 @@ class  NetworkManager {
         }
 
     }
-    static func fetchImages () {
-        
-    }
+    func roomFetching (completionHandler: @escaping (Result<Array<Dictionary<String,Any>>,Error>) -> Void){
+        guard let url = URL(string: "https://roomy-application.herokuapp.com/rooms") else {return}
+        let Token = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0MjIsImV4cCI6MTU3NjA2OTY5Mn0.ZLLzvZ_nJzjVH8T8Z9tF_hBD1FJF31mLbdZhSx_cIcA"
+        let Headers:HTTPHeaders = ["Authorization":Token]
+        AF.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: Headers).responseJSON { (response) in
+            switch response.result {
+            case .success(let value):
+                completionHandler(Result.success(value as! Array<Dictionary<String,Any>>))
+                guard let responseData = response.data else {return}
+                do {
+                    let decoder = JSONDecoder()
+                    let data = try decoder.decode([RoomData].self, from: responseData)
+                    
+                    
+                } catch {
+                    print("Whoops, an error occured: \(error)")
+                }
+            case.failure(let error):
+                completionHandler(Result.failure(error))
+            }
+            
+        }
 }
+}
+
+

@@ -21,5 +21,13 @@ class Data {
         self.Utilities = Utilities
         self.FlatImages = FlatImages
     }
-    
+}
+
+struct RoomData:Codable {
+    let title:String
+    let description:String
+    let place:String
+    let price:String
+    let image:String
+
 }
