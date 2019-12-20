@@ -14,7 +14,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let object = SignInVC()
+        if  UserDefaults.standard.value(forKey: "Token") != nil {
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC")
+            object.navigationController?.pushViewController(homeViewController, animated: true)
+        }
+        else {
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let LoginViewController = storyBoard.instantiateViewController(identifier: "SignIn")
+            object.navigationController?.pushViewController(LoginViewController, animated: true)
+        }
+        
+        
+        
+        
         return true
     }
 

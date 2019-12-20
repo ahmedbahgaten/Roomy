@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 class SignUpViewController: UIViewController {
 
+   
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var emailLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
