@@ -17,7 +17,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpBttn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let signUp = SignInVC()
+        let signUp = LoginViewController()
         signUp.roundedBttnWithShadow(Bttn: signUpBttn)
         self.hideKeyboardWhenTappedAround()
     }

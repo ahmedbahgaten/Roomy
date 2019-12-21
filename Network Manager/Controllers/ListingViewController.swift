@@ -16,7 +16,7 @@ class ListingVC: UIViewController,fromHomeToListingProtocol {
     
     @IBOutlet weak var RequestInfoBttn: UIButton!
     @IBOutlet weak var listingImageView: UIImageView!
-    let roundedBttn = SignInVC()
+    let roundedBttn = LoginViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
         roundedBttn.roundedBttnWithShadow(Bttn: RequestInfoBttn)

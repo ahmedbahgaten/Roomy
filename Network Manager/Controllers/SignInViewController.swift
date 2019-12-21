@@ -8,10 +8,14 @@
 
 import UIKit
 import Alamofire
-class SignInVC: UIViewController {
+protocol LoginView:class {
+    func navigateToHomeVC ()
+    func showAlert(error:Error)
+}
+class LoginViewController: UIViewController,LoginView{
     //MARK:-Properties
-    
     var GeneratedToken:String = ""
+    var presenter:LoginPresenterImplementation!
     //MARK:-Outlets
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
@@ -30,29 +34,24 @@ class SignInVC: UIViewController {
     @IBAction func signInbttn(_ sender: Any) {
         guard let Email = usernameTxtField.text else {return}
         guard let Password = passwordTxtField.text else {return}
-        NetworkManager.login(email: Email, password: Password) { response in
-            switch response {
-            case .success(let value):
-                guard let Token = value["auth_token"]  else {return}
-                
-                UserDefaults.standard.set(Token, forKey: "Token")
-                
-                let storyBoard = UIStoryboard(name: "Main", bundle: nil) // navigating to home screen
-                let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC")
-                self.navigationController?.pushViewController(homeViewController, animated: true)
-                
-                
-            case.failure(let Error):
-                let Alert = UIAlertController(title: "Error", message: "An unknown error has occured please try again", preferredStyle: .alert)
-                let Action = UIAlertAction(title: "Cancel", style:.cancel, handler: nil)
-                Alert.addAction(Action)
-                self.present(Alert,animated: true,completion: nil)
-                print(Error)
-            }
-            
-        }
+        presenter.login(email: Email, password: Password)
         
     }
+    func navigateToHomeVC() {
+           let storyBoard = UIStoryboard(name: "Main", bundle: nil) // navigating to home screen
+           let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC")
+           self.navigationController?.pushViewController(homeViewController, animated: true)
+       }
+
+    func showAlert(error: Error) {
+           let Alert = UIAlertController(title: "Error", message: "An unknown error has occured please try again", preferredStyle: .alert)
+           let Action = UIAlertAction(title: "Cancel", style:.cancel, handler: nil)
+           Alert.addAction(Action)
+           self.present(Alert,animated: true,completion: nil)
+        print(error.localizedDescription)
+       }
+    
+    
     override  func viewDidLoad() {
         super.viewDidLoad()
         roundedBttnWithShadow(Bttn: SignInBttn)
@@ -61,6 +60,8 @@ class SignInVC: UIViewController {
         circleOval(viewType: OvalView3)
         circleOval(viewType: OvalView4)
         self.navigationController?.isNavigationBarHidden = true
+        presenter = LoginPresenterImplementation()
+        presenter.view = self
         
         
     }

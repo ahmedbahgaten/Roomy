@@ -11,9 +11,14 @@ import Kingfisher
 protocol fromHomeToListingProtocol {
     func setImage (Image:String)
 }
-class HomeVC: UIViewController {
+protocol HomeView:AnyObject{
+    func reloadData()
+}
+
+class HomeVC: UIViewController,HomeView {
     var homeToListingDelegate:fromHomeToListingProtocol?
-    var roomArray = [RoomData]()
+    var presenter:RoomFetching!
+    
     @IBOutlet weak var tableView: UITableView!
 
     override func viewWillAppear(_ animated: Bool) {
@@ -25,38 +30,39 @@ class HomeVC: UIViewController {
           super.viewWillDisappear(animated)
           navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    //MARK:-ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presenter = RoomFetchingPresenter()
+        presenter.RoomView = self
         tableView.register(UINib(nibName: "HomeCells", bundle: nil), forCellReuseIdentifier: "MyCell")
         tableView.delegate = self
         tableView.dataSource = self
-        NetworkManager.roomFetching { (rooms,error) in
-            guard let myrooms = rooms else {return}
-            print (myrooms)
-            self.roomArray = myrooms
-            self.tableView.reloadData()
-        }
+        presenter.fetchRooms()
     }
+    func reloadData() {
+        tableView.reloadData()
     }
+}
     
 
 //MARK:-HomeVC Extension
 extension HomeVC:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         roomArray.count
-
+        return presenter.getRoomsCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! HomeCells
-        cell.Adress0.text = roomArray[indexPath.row].title
-        cell.Adress1.text = roomArray[indexPath.row].place
-        cell.Price.text = roomArray[indexPath.row].price
-        cell.Description.text = roomArray[indexPath.row].description
+        cell.Adress0.text = presenter.getItem(atIndex: indexPath.row).title
+        cell.Adress1.text = presenter.getItem(atIndex: indexPath.row).place
+        cell.Price.text = presenter.getItem(atIndex: indexPath.row).price
+        cell.Description.text = presenter.getItem(atIndex: indexPath.row).description
 
-        guard let firstImageURL = roomArray[indexPath.row].image else {return cell}
-        guard let secondImageURL = roomArray[indexPath.row].image else {return cell}
-        guard let thirdImageURL = roomArray[indexPath.row].image else {return cell}
+        guard let firstImageURL = presenter.getItem(atIndex: indexPath.row).image else {return cell}
+        guard let secondImageURL = presenter.getItem(atIndex: indexPath.row).image else {return cell}
+        guard let thirdImageURL = presenter.getItem(atIndex: indexPath.row).image else {return cell}
 
         cell.ImageView1.kf.setImage(with: URL(string: firstImageURL), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
         cell.ImageView2.kf.setImage(with: URL(string: secondImageURL), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
@@ -67,7 +73,7 @@ extension HomeVC:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let listingViewController = storyBoard.instantiateViewController(identifier: "listingViewController")
-        homeToListingDelegate?.setImage(Image: roomArray[indexPath.row].image ?? "")
+        homeToListingDelegate?.setImage(Image: presenter.getItem(atIndex: indexPath.row).image ?? "")
         navigationController?.pushViewController(listingViewController, animated: true)
     }
 }

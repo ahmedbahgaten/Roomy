@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let object = SignInVC()
+        let object = LoginViewController()
         if  UserDefaults.standard.value(forKey: "Token") != nil {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC")

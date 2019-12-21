@@ -17,7 +17,7 @@ class ViewController: UIViewController {
 
     @IBAction func StartButtonAction(_ sender: Any) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let signInViewController = storyBoard.instantiateViewController(identifier: "SignIn") as! SignInVC
+        let signInViewController = storyBoard.instantiateViewController(identifier: "SignIn") as! LoginViewController
         navigationController?.pushViewController(signInViewController, animated: true)
     }
     
