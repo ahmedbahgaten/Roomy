@@ -15,7 +15,7 @@ protocol LoginView:class {
 class LoginViewController: UIViewController,LoginView{
     //MARK:-Properties
     var GeneratedToken:String = ""
-    var presenter:LoginPresenterImplementation!
+        var presenter:LoginPresenterImplementation!
     //MARK:-Outlets
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
@@ -35,21 +35,20 @@ class LoginViewController: UIViewController,LoginView{
         guard let Email = usernameTxtField.text else {return}
         guard let Password = passwordTxtField.text else {return}
         presenter.login(email: Email, password: Password)
-        
     }
     func navigateToHomeVC() {
-           let storyBoard = UIStoryboard(name: "Main", bundle: nil) // navigating to home screen
-           let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC")
-           self.navigationController?.pushViewController(homeViewController, animated: true)
-       }
-
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil) // navigating to home screen
+        let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC")
+        self.navigationController?.pushViewController(homeViewController, animated: true)
+    }
+    
     func showAlert(error: Error) {
-           let Alert = UIAlertController(title: "Error", message: "An unknown error has occured please try again", preferredStyle: .alert)
-           let Action = UIAlertAction(title: "Cancel", style:.cancel, handler: nil)
-           Alert.addAction(Action)
-           self.present(Alert,animated: true,completion: nil)
+        let Alert = UIAlertController(title: "Error", message: "An unknown error has occured please try again", preferredStyle: .alert)
+        let Action = UIAlertAction(title: "Cancel", style:.cancel, handler: nil)
+        Alert.addAction(Action)
+        self.present(Alert,animated: true,completion: nil)
         print(error.localizedDescription)
-       }
+    }
     
     
     override  func viewDidLoad() {
@@ -60,15 +59,15 @@ class LoginViewController: UIViewController,LoginView{
         circleOval(viewType: OvalView3)
         circleOval(viewType: OvalView4)
         self.navigationController?.isNavigationBarHidden = true
-        presenter = LoginPresenterImplementation()
-        presenter.view = self
+                presenter = LoginPresenterImplementation()
+                presenter.LoginView = self
         
         
     }
     
     // Do any additional setup after loading the view.
     
-    //MARK:-Functions
+    //MARK:-View beautifying Functions
     func roundedBttnWithShadow(Bttn: UIButton) {
         Bttn.layer.cornerRadius = Bttn.frame.size.height/2
         Bttn.layer.shadowColor = UIColor.black.cgColor

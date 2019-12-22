@@ -23,6 +23,7 @@
 		E2B0992B236AF6D600DE19F9 /* ListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0992A236AF6D600DE19F9 /* ListingViewController.swift */; };
 		E2D263C423ACED5E00B61200 /* LoginPresenterImplementaion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D263C323ACED5E00B61200 /* LoginPresenterImplementaion.swift */; };
 		E2D263C623AD01E000B61200 /* RoomFetchingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D263C523AD01E000B61200 /* RoomFetchingPresenter.swift */; };
+		E2D263EB23AF8FE300B61200 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D263EA23AF8FE300B61200 /* SignUpPresenter.swift */; };
 		E2E9627423968F5A003E4FB1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E9627323968F5A003E4FB1 /* Model.swift */; };
 		F477EE7E20F6BC5EB2CFF028 /* Pods_Roomy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DE3536FE13E3B3F055B9CB9 /* Pods_Roomy.framework */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 		E2B0992A236AF6D600DE19F9 /* ListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewController.swift; sourceTree = "<group>"; };
 		E2D263C323ACED5E00B61200 /* LoginPresenterImplementaion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenterImplementaion.swift; sourceTree = "<group>"; };
 		E2D263C523AD01E000B61200 /* RoomFetchingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomFetchingPresenter.swift; sourceTree = "<group>"; };
+		E2D263EA23AF8FE300B61200 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		E2E9627323968F5A003E4FB1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 			children = (
 				E2D263C323ACED5E00B61200 /* LoginPresenterImplementaion.swift */,
 				E2D263C523AD01E000B61200 /* RoomFetchingPresenter.swift */,
+				E2D263EA23AF8FE300B61200 /* SignUpPresenter.swift */,
 			);
 			path = Presenters;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				E2848DCC236ADEF3006DFE74 /* HomeViewController.swift in Sources */,
 				E2ABCA5A2382F3C3002DC068 /* AuthRouter.swift in Sources */,
 				E20BF242237C6E1B006AD865 /* SignUpViewController.swift in Sources */,
+				E2D263EB23AF8FE300B61200 /* SignUpPresenter.swift in Sources */,
 				E2121A632368754C001757B8 /* AppDelegate.swift in Sources */,
 				E2121A7723688B1C001757B8 /* SignInViewController.swift in Sources */,
 				E2848DCF236ADF77006DFE74 /* HomeCells.swift in Sources */,

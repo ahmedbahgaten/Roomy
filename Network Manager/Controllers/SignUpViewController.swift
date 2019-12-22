@@ -8,9 +8,12 @@
 
 import UIKit
 import Alamofire
-class SignUpViewController: UIViewController {
-
-   
+protocol signUpView:class {
+    func navigateToSignInVC()
+}
+class SignUpViewController: UIViewController,signUpView{
+  
+    var presenter:signUpPresenterImplementation!
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var emailLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
@@ -20,21 +23,22 @@ class SignUpViewController: UIViewController {
         let signUp = LoginViewController()
         signUp.roundedBttnWithShadow(Bttn: signUpBttn)
         self.hideKeyboardWhenTappedAround()
+        presenter = signUpPresenterImplementation()
+        presenter.signUpView = self
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
         guard let name = nameLabel.text else {return}
         guard let email = emailLabel.text else {return}
         guard let password = passwordLabel.text else {return}
-        NetworkManager.signUp(name: name, email: email, password: password) { (response) in
-            switch response {
-            case.success(let value):
-                print(value)
-            case.failure(let Error):
-                print(Error)
-            }
-        }
+        presenter.signUp(name: name, email: email, password: password)
     }
+    
+    func navigateToSignInVC() {
+          let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let signInViewController = storyBoard.instantiateViewController(identifier: "SignIn")
+        self.navigationController?.pushViewController(signInViewController, animated: true)
+      }
 }
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
