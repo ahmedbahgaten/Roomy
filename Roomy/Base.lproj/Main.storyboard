@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="801.44927536231887" y="117.1875"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="m9k-HY-rfi">
             <objects>
-                <viewController storyboardIdentifier="SignIn" id="lm8-LD-VWo" customClass="LoginViewController" customModule="Roomy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignIn" id="lm8-LD-VWo" customClass="SignInViewController" customModule="Roomy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PRj-az-Mla">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -415,10 +415,10 @@
             </objects>
             <point key="canvasLocation" x="2278" y="117"/>
         </scene>
-        <!--HomeVC-->
+        <!--Home View Controller-->
         <scene sceneID="ppq-q5-VXm">
             <objects>
-                <viewController storyboardIdentifier="homeVC" id="tYR-S7-ohR" customClass="HomeVC" customModule="Roomy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeVC" id="tYR-S7-ohR" customClass="HomeViewController" customModule="Roomy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6jK-z0-9S1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -445,10 +445,10 @@
             </objects>
             <point key="canvasLocation" x="2952.1739130434785" y="116.51785714285714"/>
         </scene>
-        <!--ListingVC-->
+        <!--Listing View Controller-->
         <scene sceneID="9fF-wB-HkA">
             <objects>
-                <viewController storyboardIdentifier="listingViewController" id="QB4-8d-NCE" customClass="ListingVC" customModule="Roomy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="listingViewController" id="QB4-8d-NCE" customClass="ListingViewController" customModule="Roomy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XfY-Il-2g5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

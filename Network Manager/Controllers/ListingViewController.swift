@@ -7,21 +7,23 @@
 //
 
 import UIKit
-
-class ListingVC: UIViewController,fromHomeToListingProtocol {
-    let object = HomeVC()
-    func setImage(Image: String) {
+import Kingfisher
+class ListingViewController: UIViewController {
+    
+    var room: RoomData!
+    
+    func setImage(Image:String) {
         listingImageView.kf.setImage(with: URL(string: Image), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
     }
     
+    
     @IBOutlet weak var RequestInfoBttn: UIButton!
     @IBOutlet weak var listingImageView: UIImageView!
-    let roundedBttn = LoginViewController()
+    let roundedBttn = SignInViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
         roundedBttn.roundedBttnWithShadow(Bttn: RequestInfoBttn)
-        object.homeToListingDelegate = self
-
+        setImage(Image: room.image ?? "")
     }
     
     

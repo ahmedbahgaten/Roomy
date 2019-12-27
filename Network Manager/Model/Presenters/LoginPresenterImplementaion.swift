@@ -5,7 +5,6 @@
 //  Created by AHMED on 12/20/19.
 //  Copyright © 2019 AHMED. All rights reserved.
 //
-
 import Foundation
 protocol LoginPresenter {
     var LoginView:LoginView! {get set}
@@ -19,6 +18,8 @@ class LoginPresenterImplementation:LoginPresenter {
                       case .success(let value):
                           guard let Token = value["auth_token"]  else {return}
                           UserDefaults.standard.set(Token, forKey: "Token")
+                          print(Token)
+                          
                           self.LoginView.navigateToHomeVC()
                           
                       case.failure(let Error):

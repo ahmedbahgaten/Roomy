@@ -9,11 +9,12 @@
 import Foundation
 protocol RoomFetching {
     var RoomView:HomeView! {get set}
-    
+    //MARK:-
     func fetchRooms()
     func getRoomsCount() -> Int
     func getItem(atIndex: Int) -> RoomData
 }
+//MARK:-
 class RoomFetchingPresenter:RoomFetching {
     weak var RoomView: HomeView!
     
@@ -23,7 +24,6 @@ class RoomFetchingPresenter:RoomFetching {
     func fetchRooms() {
         NetworkManager.roomFetching { (rooms,error) in
             guard let myrooms = rooms else {return}
-            print (myrooms)
             self.rooms = myrooms
             self.RoomView.reloadData()
         }

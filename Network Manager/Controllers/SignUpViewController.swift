@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController,signUpView{
     @IBOutlet weak var signUpBttn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let signUp = LoginViewController()
+        let signUp = SignInViewController()
         signUp.roundedBttnWithShadow(Bttn: signUpBttn)
         self.hideKeyboardWhenTappedAround()
         presenter = signUpPresenterImplementation()
@@ -31,9 +31,15 @@ class SignUpViewController: UIViewController,signUpView{
         guard let name = nameLabel.text else {return}
         guard let email = emailLabel.text else {return}
         guard let password = passwordLabel.text else {return}
+        if email.isEmpty  == false && password.isEmpty == false && name.isEmpty == false {
+        let object = SignInViewController()
+        object.showIndicator()
         presenter.signUp(name: name, email: email, password: password)
     }
-    
+        else {
+            return
+        }
+    }
     func navigateToSignInVC() {
           let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let signInViewController = storyBoard.instantiateViewController(identifier: "SignIn")

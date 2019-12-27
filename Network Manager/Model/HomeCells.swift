@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeCells: UITableViewCell {
     @IBOutlet weak var Adress0: UILabel!
@@ -20,6 +21,15 @@ class HomeCells: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    func configure (Address0:String,Address1:String,ImageViewURL:String,Price:String,DescriptionText:String)
+    {
+        Adress0.text = Address0
+        Adress1.text = Address1
+        Description.text = DescriptionText
+        ImageView1.kf.setImage(with: URL(string: ImageViewURL), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
+        ImageView2.kf.setImage(with: URL(string: ImageViewURL), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
+        ImageView3.kf.setImage(with: URL(string: ImageViewURL), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

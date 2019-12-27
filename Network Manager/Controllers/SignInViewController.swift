@@ -11,11 +11,14 @@ import Alamofire
 protocol LoginView:class {
     func navigateToHomeVC ()
     func showAlert(error:Error)
+    func showIndicator()
 }
-class LoginViewController: UIViewController,LoginView{
+class SignInViewController: UIViewController,LoginView{
+   
+    
     //MARK:-Properties
     var GeneratedToken:String = ""
-        var presenter:LoginPresenterImplementation!
+    var presenter:LoginPresenterImplementation!
     //MARK:-Outlets
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
@@ -30,11 +33,48 @@ class LoginViewController: UIViewController,LoginView{
         let SignUpViewController = storyBoard.instantiateViewController(identifier: "SignUp")
         self.navigationController?.pushViewController(SignUpViewController, animated: true)
     }
-    
     @IBAction func signInbttn(_ sender: Any) {
         guard let Email = usernameTxtField.text else {return}
         guard let Password = passwordTxtField.text else {return}
-        presenter.login(email: Email, password: Password)
+        if Email.isEmpty  == false && Password.isEmpty == false {
+           showIndicator()
+            presenter.login(email: Email, password: Password)
+        }
+        else {
+            return
+        }
+    }
+    override  func viewDidLoad() {
+        super.viewDidLoad()
+//        roundedBttnWithShadow(Bttn: SignInBttn)
+//        circleOval(viewType: OvalView)
+//        circleOval(viewType: OvalView2)
+//        circleOval(viewType: OvalView3)
+//        circleOval(viewType: OvalView4)
+        self.hideKeyboardWhenTappedAround()
+        self.navigationController?.isNavigationBarHidden = true
+        presenter = LoginPresenterImplementation()
+        presenter.LoginView = self
+    }
+    
+    
+    //MARK:-View beautifying Functions
+    func roundedBttnWithShadow(Bttn: UIButton) {
+        Bttn.layer.cornerRadius = Bttn.frame.size.height/2
+        Bttn.layer.shadowColor = UIColor.black.cgColor
+        Bttn.layer.shadowRadius = 2
+        Bttn.layer.shadowOpacity = 0.5
+        Bttn.layer.shadowOffset = CGSize(width: 0.0 , height: 2.0)
+    }
+    func circleOval(viewType: UIView) {
+        viewType.backgroundColor = .white
+        viewType.layer.cornerRadius = viewType.frame.size.width/2
+        viewType.clipsToBounds = true
+        viewType.layer.masksToBounds = false
+        viewType.layer.shadowColor = UIColor.black.cgColor
+        viewType.layer.shadowRadius = 1.0
+        viewType.layer.shadowOpacity = 0.5
+        viewType.layer.shadowOffset = CGSize(width: 0, height: 1)
     }
     func navigateToHomeVC() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil) // navigating to home screen
@@ -49,44 +89,16 @@ class LoginViewController: UIViewController,LoginView{
         self.present(Alert,animated: true,completion: nil)
         print(error.localizedDescription)
     }
-    
-    
-    override  func viewDidLoad() {
-        super.viewDidLoad()
-        roundedBttnWithShadow(Bttn: SignInBttn)
-        circleOval(viewType: OvalView)
-        circleOval(viewType: OvalView2)
-        circleOval(viewType: OvalView3)
-        circleOval(viewType: OvalView4)
-        self.navigationController?.isNavigationBarHidden = true
-                presenter = LoginPresenterImplementation()
-                presenter.LoginView = self
+     func showIndicator() {
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
         
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.style = UIActivityIndicatorView.Style.large
+        loadingIndicator.startAnimating()
         
-    }
-    
-    // Do any additional setup after loading the view.
-    
-    //MARK:-View beautifying Functions
-    func roundedBttnWithShadow(Bttn: UIButton) {
-        Bttn.layer.cornerRadius = Bttn.frame.size.height/2
-        Bttn.layer.shadowColor = UIColor.black.cgColor
-        Bttn.layer.shadowRadius = 2
-        Bttn.layer.shadowOpacity = 0.5
-        Bttn.layer.shadowOffset = CGSize(width: 0.0 , height: 2.0)
-        
-        
-    }
-    func circleOval(viewType: UIView) {
-        viewType.backgroundColor = .white
-        viewType.layer.cornerRadius = viewType.frame.size.width/2
-        viewType.clipsToBounds = true
-        viewType.layer.masksToBounds = false
-        viewType.layer.shadowColor = UIColor.black.cgColor
-        viewType.layer.shadowRadius = 1.0
-        viewType.layer.shadowOpacity = 0.5
-        viewType.layer.shadowOffset = CGSize(width: 0, height: 1)
-        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
     }
 }
 

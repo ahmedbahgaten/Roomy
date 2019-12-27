@@ -20,7 +20,8 @@ class signUpPresenterImplementation:SignUpPresenter {
                    switch response {
                    case.success(let value):
                        print(value)
-                       self.signUpView?.navigateToSignInVC()
+                       // ezay hena a3ml en lw el response ely gayli kan Account created successfully a3ml navigate w lw gali invalid credentials m3mlsh navigate
+//
                    case.failure(let Error):
                        print(Error)
                    }
