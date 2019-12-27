@@ -40,7 +40,6 @@ class HomeViewController: UIViewController,HomeView {
         tableView.delegate = self
         tableView.dataSource = self
         presenter.fetchRooms()
-        dismiss(animated: false, completion: nil)
 
     }
     func reloadData() {

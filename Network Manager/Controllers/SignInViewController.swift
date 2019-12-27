@@ -11,7 +11,6 @@ import Alamofire
 protocol LoginView:class {
     func navigateToHomeVC ()
     func showAlert(error:Error)
-    func showIndicator()
 }
 class SignInViewController: UIViewController,LoginView{
    
@@ -19,6 +18,8 @@ class SignInViewController: UIViewController,LoginView{
     //MARK:-Properties
     var GeneratedToken:String = ""
     var presenter:LoginPresenterImplementation!
+    let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+      let Alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
     //MARK:-Outlets
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
@@ -27,18 +28,21 @@ class SignInViewController: UIViewController,LoginView{
     @IBOutlet weak var OvalView2: UIView!
     @IBOutlet weak var OvalView3: UIView!
     @IBOutlet weak var OvalView4: UIView!
+    @IBOutlet weak var LoginIndicator: UIActivityIndicatorView!
     //MARK:-Actions
     @IBAction func SignUpButtonClicked(_ sender: Any) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let SignUpViewController = storyBoard.instantiateViewController(identifier: "SignUp")
+        let SignUpViewController = storyBoard.instantiateViewController(identifier: "SignUp") as! SignUpViewController
         self.navigationController?.pushViewController(SignUpViewController, animated: true)
     }
     @IBAction func signInbttn(_ sender: Any) {
         guard let Email = usernameTxtField.text else {return}
         guard let Password = passwordTxtField.text else {return}
         if Email.isEmpty  == false && Password.isEmpty == false {
-           showIndicator()
+            LoginIndicator.isHidden = false
+            LoginIndicator.startAnimating()
             presenter.login(email: Email, password: Password)
+
         }
         else {
             return
@@ -46,15 +50,16 @@ class SignInViewController: UIViewController,LoginView{
     }
     override  func viewDidLoad() {
         super.viewDidLoad()
-//        roundedBttnWithShadow(Bttn: SignInBttn)
-//        circleOval(viewType: OvalView)
-//        circleOval(viewType: OvalView2)
-//        circleOval(viewType: OvalView3)
-//        circleOval(viewType: OvalView4)
+        roundedBttnWithShadow(Bttn: SignInBttn)
+        circleOval(viewType: OvalView)
+        circleOval(viewType: OvalView2)
+        circleOval(viewType: OvalView3)
+        circleOval(viewType: OvalView4)
         self.hideKeyboardWhenTappedAround()
         self.navigationController?.isNavigationBarHidden = true
         presenter = LoginPresenterImplementation()
         presenter.LoginView = self
+        LoginIndicator.isHidden = true
     }
     
     
@@ -78,7 +83,7 @@ class SignInViewController: UIViewController,LoginView{
     }
     func navigateToHomeVC() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil) // navigating to home screen
-        let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC")
+        let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC") as! HomeViewController
         self.navigationController?.pushViewController(homeViewController, animated: true)
     }
     
@@ -89,17 +94,22 @@ class SignInViewController: UIViewController,LoginView{
         self.present(Alert,animated: true,completion: nil)
         print(error.localizedDescription)
     }
-     func showIndicator() {
-        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
-        
-        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.style = UIActivityIndicatorView.Style.large
-        loadingIndicator.startAnimating()
-        
-        alert.view.addSubview(loadingIndicator)
-        present(alert, animated: true, completion: nil)
-    }
+//    func hideIndicator() {
+//       
+//         loadingIndicator.stopAnimating()
+//         Alert.dismiss(animated: true, completion: nil)
+//     }
+//     
+//     func showIndicator() {
+//
+//         loadingIndicator.hidesWhenStopped = true
+//         loadingIndicator.style = UIActivityIndicatorView.Style.large
+//         loadingIndicator.startAnimating()
+//         
+//         Alert.view.addSubview(loadingIndicator)
+//         present(Alert, animated: true, completion: nil)
+//     }
+
 }
 
 

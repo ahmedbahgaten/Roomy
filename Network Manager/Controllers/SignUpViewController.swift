@@ -12,12 +12,12 @@ protocol signUpView:class {
     func navigateToSignInVC()
 }
 class SignUpViewController: UIViewController,signUpView{
-  
     var presenter:signUpPresenterImplementation!
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var emailLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
     @IBOutlet weak var signUpBttn: UIButton!
+    @IBOutlet weak var signUpLoadingIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
         let signUp = SignInViewController()
@@ -25,6 +25,7 @@ class SignUpViewController: UIViewController,signUpView{
         self.hideKeyboardWhenTappedAround()
         presenter = signUpPresenterImplementation()
         presenter.signUpView = self
+        signUpLoadingIndicator.isHidden = true
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
@@ -32,28 +33,33 @@ class SignUpViewController: UIViewController,signUpView{
         guard let email = emailLabel.text else {return}
         guard let password = passwordLabel.text else {return}
         if email.isEmpty  == false && password.isEmpty == false && name.isEmpty == false {
-        let object = SignInViewController()
-        object.showIndicator()
-        presenter.signUp(name: name, email: email, password: password)
-    }
+            signUpLoadingIndicator.isHidden = false
+            signUpLoadingIndicator.startAnimating()
+            presenter.signUp(name: name, email: email, password: password)
+        }
         else {
             return
         }
     }
+    
     func navigateToSignInVC() {
-          let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let signInViewController = storyBoard.instantiateViewController(identifier: "SignIn")
-        self.navigationController?.pushViewController(signInViewController, animated: true)
-      }
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    
 }
 extension UIViewController {
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    
 }
+
