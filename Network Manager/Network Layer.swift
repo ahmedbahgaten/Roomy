@@ -11,33 +11,43 @@ import Alamofire
 
 class  NetworkManager {
     //MARK: -Login Function
-    static func login (email:String,password:String,completionHandler:@escaping (Result<[String: Any], Error>) -> ()) {
+    static func login (email:String,password:String,completionHandler:@escaping (serverResponse? , Error?) -> ()) {
         let loginRequest = AuthenticationRouter.login(email: email, password:password)
         AF.request(loginRequest).responseJSON { (response) in
             switch response.result {
-            case .success(let value):
-                // need to check if the response is auth_token or invalid credentials
-                completionHandler(Result.success(value as! [String:Any]))
-                
-                
+            case .success:
+             guard let responseData = response.data else {return}
+                do {
+                    let decoder = JSONDecoder()
+                    let data = try decoder.decode(serverResponse.self, from: responseData)
+                    completionHandler(data,nil)
+                } catch {
+                    print("Whoops, an error occured: \(error)")
+                }
             case.failure(let error):
-                completionHandler(Result.failure(error))
+                completionHandler (nil,error)
                 
             }
         }
     }
     //MARK: -SignUp function
-    static func signUp (name:String ,email:String,password:String , completionHandler:@escaping ((Result<[String:Any],Error>) -> Void)) {
+    static func signUp (name:String ,email:String,password:String , completionHandler:@escaping (serverResponse?,Error?) -> Void) {
         let signUpRequest = AuthenticationRouter.signUp(name: name, email: email, password: password)
         AF.request(signUpRequest).responseJSON { (response) in
             switch response.result {
-            case .success(let value):
-                completionHandler(Result.success(value as! [String:Any]))
+            case .success:
+                guard let responseData = response.data else {return}
+                do {
+                    let decoder = JSONDecoder()
+                    let data = try decoder.decode(serverResponse.self, from: responseData)
+                    completionHandler(data,nil)
+                } catch {
+                    print("Whoops, an error occured: \(error)")
+                }
             case .failure(let Error):
-                completionHandler(Result.failure(Error))
+                completionHandler(nil,Error)
             }
         }
-        
     }
     //MARK: -RoomFetching function
     static func roomFetching (completionHandler: @escaping ([RoomData]?,Error?) -> Void){

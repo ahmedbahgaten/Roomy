@@ -13,15 +13,16 @@ protocol LoginPresenter {
 class LoginPresenterImplementation:LoginPresenter {
     weak var LoginView: LoginView!
     func login(email: String, password: String) {
-        NetworkManager.login(email: email, password: password) { response in
-            switch response {
-            case .success(let value):
-                guard let Token = value["auth_token"]  else {return}
+        NetworkManager.login(email: email, password: password) { responseServer,Error  in
+            guard let ServerResponse = responseServer else {return}
+            if ServerResponse.message == "Invalid credentials" {
+                self.LoginView.showAlert()
+                self.LoginView.hideIndicator()
+            }
+            else {
+                let Token = ServerResponse.auth_token
                 UserDefaults.standard.set(Token, forKey: "Token")
                 self.LoginView.navigateToHomeVC()
-                
-            case.failure(let Error):
-                self.LoginView.showAlert(error: Error)
             }
             
         }

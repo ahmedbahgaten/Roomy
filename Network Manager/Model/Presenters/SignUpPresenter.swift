@@ -14,17 +14,18 @@ protocol SignUpPresenter {
 }
 class signUpPresenterImplementation:SignUpPresenter {
     weak var signUpView: signUpView?
-    
+    weak var loginView:LoginView?
     func signUp(name:String,email: String, password: String) {
-        NetworkManager.signUp(name: name, email: email, password: password) { (response) in
-                   switch response {
-                   case.success(let value):
-                       print(value)
-                       self.signUpView?.navigateToSignInVC()
-                   case.failure(let Error):
-                       print(Error)
-                   }
-               }
+        NetworkManager.signUp(name: name, email: email, password: password) { (responseServer,Error) in
+            guard let ServerResponse = responseServer else {return}
+            if ServerResponse.message == "Account created successfully" {
+                self.signUpView?.hideIndicator()
+                self.signUpView?.showAlert()
+            }
+            else {
+                return
+            }
+        }
     }
     
     

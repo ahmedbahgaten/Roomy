@@ -10,7 +10,8 @@ import UIKit
 import Alamofire
 protocol LoginView:class {
     func navigateToHomeVC ()
-    func showAlert(error:Error)
+    func showAlert()
+    func hideIndicator()
 }
 class SignInViewController: UIViewController,LoginView{
    
@@ -59,7 +60,7 @@ class SignInViewController: UIViewController,LoginView{
         self.navigationController?.isNavigationBarHidden = true
         presenter = LoginPresenterImplementation()
         presenter.LoginView = self
-        LoginIndicator.isHidden = true
+        hideIndicator()
     }
     
     
@@ -87,28 +88,16 @@ class SignInViewController: UIViewController,LoginView{
         self.navigationController?.pushViewController(homeViewController, animated: true)
     }
     
-    func showAlert(error: Error) {
-        let Alert = UIAlertController(title: "Error", message: "An unknown error has occured please try again", preferredStyle: .alert)
-        let Action = UIAlertAction(title: "Cancel", style:.cancel, handler: nil)
+    func showAlert() {
+        let Alert = UIAlertController(title: "Wrong data", message: "You have entered wrong username or password", preferredStyle: .alert)
+        let Action = UIAlertAction(title: "Ok", style:.default, handler: nil)
         Alert.addAction(Action)
         self.present(Alert,animated: true,completion: nil)
-        print(error.localizedDescription)
     }
-//    func hideIndicator() {
-//       
-//         loadingIndicator.stopAnimating()
-//         Alert.dismiss(animated: true, completion: nil)
-//     }
-//     
-//     func showIndicator() {
-//
-//         loadingIndicator.hidesWhenStopped = true
-//         loadingIndicator.style = UIActivityIndicatorView.Style.large
-//         loadingIndicator.startAnimating()
-//         
-//         Alert.view.addSubview(loadingIndicator)
-//         present(Alert, animated: true, completion: nil)
-//     }
+    func hideIndicator () {
+        LoginIndicator.isHidden = true
+
+    }
 
 }
 

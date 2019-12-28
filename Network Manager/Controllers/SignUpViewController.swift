@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 protocol signUpView:class {
     func navigateToSignInVC()
+    func hideIndicator()
+    func showAlert()
 }
 class SignUpViewController: UIViewController,signUpView{
     var presenter:signUpPresenterImplementation!
@@ -25,7 +27,7 @@ class SignUpViewController: UIViewController,signUpView{
         self.hideKeyboardWhenTappedAround()
         presenter = signUpPresenterImplementation()
         presenter.signUpView = self
-        signUpLoadingIndicator.isHidden = true
+        hideIndicator()
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
@@ -44,6 +46,18 @@ class SignUpViewController: UIViewController,signUpView{
     
     func navigateToSignInVC() {
         self.navigationController?.popViewController(animated: true)
+    }
+    func hideIndicator() {
+        signUpLoadingIndicator.isHidden = true
+    }
+    func showAlert() {
+        let Alert = UIAlertController(title: "Successful Operation", message: "Your account has been successfully created!", preferredStyle: .alert)
+        let Action = UIAlertAction(title: "Ok", style: .default) { (Action) in
+            self.navigateToSignInVC()
+
+        }
+        Alert.addAction(Action)
+        present(Alert,animated: true,completion: nil)
     }
 
     

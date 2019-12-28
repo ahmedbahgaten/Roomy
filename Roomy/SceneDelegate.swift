@@ -14,27 +14,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-
-        self.window = UIWindow(windowScene: windowScene)
-
-        if  UserDefaults.standard.value(forKey: "Token") != nil {
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC") as! HomeViewController
-            let navigationController = UINavigationController(rootViewController: homeViewController)
-
-            self.window?.rootViewController = navigationController
-            self.window?.makeKeyAndVisible()
-
-        }
-        else {
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let LoginViewController = storyBoard.instantiateViewController(identifier: "SignIn") as! SignInViewController
-            let navigationController = UINavigationController(rootViewController: LoginViewController)
-
-            self.window?.rootViewController = navigationController
-            self.window?.makeKeyAndVisible()
-        }
+//        guard let windowScene = (scene as? UIWindowScene) else { return }
+//
+//        self.window = UIWindow(windowScene: windowScene)
+//
+//        if  UserDefaults.standard.value(forKey: "Token") != nil {
+//            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//            let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC") as! HomeViewController
+//            let navigationController = UINavigationController(rootViewController: homeViewController)
+//
+//            self.window?.rootViewController = navigationController
+//            self.window?.makeKeyAndVisible()
+//
+//        }
+//        else {
+//            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//            let LoginViewController = storyBoard.instantiateViewController(identifier: "SignIn") as! SignInViewController
+//            let navigationController = UINavigationController(rootViewController: LoginViewController)
+//
+//            self.window?.rootViewController = navigationController
+//            self.window?.makeKeyAndVisible()
+//        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
