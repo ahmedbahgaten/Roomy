@@ -60,11 +60,10 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource {
         let Description = presenter.getItem(atIndex: indexPath.row).description
         guard let firstImageURL = presenter.getItem(atIndex: indexPath.row).image else {return cell}
         
-        cell.configure(Address0: Title ?? "" , Address1: Place ?? "", ImageViewURL: firstImageURL , Price: Price ?? "", DescriptionText: Description ?? "")   // howa na hena m3mltsh violate l el MVP princeple 3shan 5leet el configure y7sl fl view msh el presenter?
+        cell.configure(Address0: Title ?? "" , Address1: Place ?? "", ImageViewURL: firstImageURL , Price: Price ?? "", DescriptionText: Description ?? "")
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        homeToListingDelegate?.setImage(Image: presenter.getItem(atIndex: indexPath.row).image ?? "")
         let room = presenter.getItem(atIndex: indexPath.row)
         navigateToListingViewController(room: room)
     }

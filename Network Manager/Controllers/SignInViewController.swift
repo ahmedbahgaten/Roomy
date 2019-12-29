@@ -43,7 +43,6 @@ class SignInViewController: UIViewController,LoginView{
             LoginIndicator.isHidden = false
             LoginIndicator.startAnimating()
             presenter.login(email: Email, password: Password)
-
         }
         else {
             return
