@@ -8,7 +8,7 @@
 
 import UIKit
 import Kingfisher
-class ListingViewController: UIViewController {
+open class ListingViewController: UIViewController {
     
     var room: RoomData!
     
@@ -20,7 +20,7 @@ class ListingViewController: UIViewController {
     @IBOutlet weak var RequestInfoBttn: UIButton!
     @IBOutlet weak var listingImageView: UIImageView!
     let roundedBttn = SignInViewController()
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         roundedBttn.roundedBttnWithShadow(Bttn: RequestInfoBttn)
         setImage(Image: room.image ?? "")

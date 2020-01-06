@@ -13,14 +13,19 @@ protocol SignUpPresenter {
     func signUp(name:String,email:String,password:String)
 }
 class signUpPresenterImplementation:SignUpPresenter {
+    init(signUpView:signUpView,router:signUpRouter) {
+        self.signUpView = signUpView
+        self.router = router
+    }
+    var router:signUpRouter!
     weak var signUpView: signUpView?
-    weak var loginView:LoginView?
+//    weak var loginView:LoginView?
     func signUp(name:String,email: String, password: String) {
         NetworkManager.signUp(name: name, email: email, password: password) { (responseServer,Error) in
             guard let ServerResponse = responseServer else {return}
             if ServerResponse.message == "Account created successfully" {
                 self.signUpView?.hideIndicator()
-                self.signUpView?.showAlert()
+                self.router.showAlert()
             }
             else {
                 return

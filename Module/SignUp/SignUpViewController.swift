@@ -9,11 +9,12 @@
 import UIKit
 import Alamofire
 protocol signUpView:class {
-    func navigateToSignInVC()
+//    func navigateToSignInVC()
     func hideIndicator()
-    func showAlert()
+//    func showAlert()
 }
 class SignUpViewController: UIViewController,signUpView{
+
     var presenter:signUpPresenterImplementation!
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var emailLabel: UITextField!
@@ -25,8 +26,7 @@ class SignUpViewController: UIViewController,signUpView{
         let signUp = SignInViewController()
         signUp.roundedBttnWithShadow(Bttn: signUpBttn)
         self.hideKeyboardWhenTappedAround()
-        presenter = signUpPresenterImplementation()
-        presenter.signUpView = self
+        signUpConfigurator.configure(signUpViewController: self)
         hideIndicator()
     }
     
@@ -44,24 +44,24 @@ class SignUpViewController: UIViewController,signUpView{
         }
     }
     
-    func navigateToSignInVC() {
-        self.navigationController?.popViewController(animated: true)
-    }
+//    func navigateToSignInVC() {
+//        self.navigationController?.popViewController(animated: true)
+//    }
     func hideIndicator() {
         signUpLoadingIndicator.isHidden = true
     }
-    func showAlert() {
-        let Alert = UIAlertController(title: "Successful Operation", message: "Your account has been successfully created!", preferredStyle: .alert)
-        let Action = UIAlertAction(title: "Ok", style: .default) { (Action) in
-            self.navigateToSignInVC()
-
-        }
-        Alert.addAction(Action)
-        present(Alert,animated: true,completion: nil)
+//    func showAlert() {
+//        let Alert = UIAlertController(title: "Successful Operation", message: "Your account has been successfully created!", preferredStyle: .alert)
+//        let Action = UIAlertAction(title: "Ok", style: .default) { (Action) in
+//            self.navigateToSignInVC()
+//
+//        }
+//        Alert.addAction(Action)
+//        present(Alert,animated: true,completion: nil)
     }
 
     
-}
+//}
 extension UIViewController {
     
     func hideKeyboardWhenTappedAround() {

@@ -18,13 +18,12 @@ protocol HomeView:AnyObject{
 class HomeViewController: UIViewController,HomeView {
     var homeToListingDelegate:fromHomeToListingProtocol?
     var presenter:RoomFetching!
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-        
+        navigationController?.setNavigationBarHidden(true,animated: true)
+
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -33,13 +32,12 @@ class HomeViewController: UIViewController,HomeView {
     //MARK:-ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        presenter = RoomFetchingPresenter()
-        presenter.RoomView = self
+        Homeconfigurator.configure(homeViewController: self)
         tableView.register(UINib(nibName: "HomeCells", bundle: nil), forCellReuseIdentifier: "MyCell")
         tableView.delegate = self
         tableView.dataSource = self
         presenter.fetchRooms()
+
 
     }
     func reloadData() {
@@ -65,13 +63,20 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let room = presenter.getItem(atIndex: indexPath.row)
-        navigateToListingViewController(room: room)
+        self.presenter.rowIsSelected(room: room)
+        
+        
+        
+        
+        
+        
+//        navigateToListingViewController(room: room)
     }
-    func navigateToListingViewController (room: RoomData) {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let listingViewController = storyBoard.instantiateViewController(identifier: "listingViewController") as! ListingViewController
-        listingViewController.room = room
-        navigationController?.pushViewController(listingViewController, animated: true)
-    }
+//    func navigateToListingViewController (room: RoomData) {
+//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//        let listingViewController = storyBoard.instantiateViewController(identifier: "listingViewController") as! ListingViewController
+//        listingViewController.room = room
+//        navigationController?.pushViewController(listingViewController, animated: true)
+//    }
     
 }

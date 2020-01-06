@@ -13,12 +13,17 @@ protocol RoomFetching {
     func fetchRooms()
     func getRoomsCount() -> Int
     func getItem(atIndex: Int) -> RoomData
+    func rowIsSelected(room:RoomData)
 }
 //MARK:-
 class RoomFetchingPresenter:RoomFetching {
+    
+    let router:HomeRouter!
+    init(roomView:HomeView,router:HomeRouter) {
+        self.router = router
+        self.RoomView = roomView
+    }
     weak var RoomView: HomeView!
-    
-    
     private var rooms = [RoomData]()
     
     func fetchRooms() {
@@ -33,6 +38,9 @@ class RoomFetchingPresenter:RoomFetching {
     }
     func getItem(atIndex: Int) -> RoomData {
         return rooms[atIndex]
+    }
+    func rowIsSelected(room: RoomData) {
+        self.router.navigateToListingViewController(room: room)
     }
     
 }

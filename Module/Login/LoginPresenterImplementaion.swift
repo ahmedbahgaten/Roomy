@@ -7,10 +7,15 @@
 //
 import Foundation
 protocol LoginPresenter {
-    var LoginView:LoginView! {get set}
+//    var LoginView:LoginView! {get set}
     func login (email:String,password:String)
 }
 class LoginPresenterImplementation:LoginPresenter {
+    init(loginView:LoginView,router:loginRouter) {
+        self.LoginView = loginView
+        self.router = router
+    }
+    var router:loginRouter!
     weak var LoginView: LoginView!
     func login(email: String, password: String) {
         NetworkManager.login(email: email, password: password) { responseServer,Error  in
@@ -22,7 +27,7 @@ class LoginPresenterImplementation:LoginPresenter {
             else {
                 let Token = ServerResponse.auth_token
                 UserDefaults.standard.set(Token, forKey: "Token")
-                self.LoginView.navigateToHomeVC()
+                self.router.navigateToHome()
             }
             
         }

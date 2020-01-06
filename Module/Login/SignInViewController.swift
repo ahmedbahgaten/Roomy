@@ -57,8 +57,7 @@ class SignInViewController: UIViewController,LoginView{
         circleOval(viewType: OvalView4)
         self.hideKeyboardWhenTappedAround()
         self.navigationController?.isNavigationBarHidden = true
-        presenter = LoginPresenterImplementation()
-        presenter.LoginView = self
+        LoginConfigurator.configure(loginViewController: self)
         hideIndicator()
     }
     

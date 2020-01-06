@@ -39,7 +39,7 @@ class  NetworkManager {
                 guard let responseData = response.data else {return}
                 do {
                     let decoder = JSONDecoder()
-                    let data = try decoder.decode(serverResponse.self, from: responseData)
+                    let data = try decoder.decode(serverResponse.self, from: responseData) 
                     completionHandler(data,nil)
                 } catch {
                     print("Whoops, an error occured: \(error)")
