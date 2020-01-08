@@ -9,7 +9,7 @@
 import Foundation
 protocol RoomFetching {
     var RoomView:HomeView! {get set}
-    //MARK:-
+    //MARK:- Protocol function declarations
     func fetchRooms()
     func getRoomsCount() -> Int
     func getItem(atIndex: Int) -> RoomData

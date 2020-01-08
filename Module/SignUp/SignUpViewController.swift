@@ -9,27 +9,26 @@
 import UIKit
 import Alamofire
 protocol signUpView:class {
-//    func navigateToSignInVC()
     func hideIndicator()
-//    func showAlert()
 }
 class SignUpViewController: UIViewController,signUpView{
-
+    //MARK:-Variables
     var presenter:signUpPresenterImplementation!
+    //MARK:-Outlets
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var emailLabel: UITextField!
     @IBOutlet weak var passwordLabel: UITextField!
     @IBOutlet weak var signUpBttn: UIButton!
     @IBOutlet weak var signUpLoadingIndicator: UIActivityIndicatorView!
+    //MARK:-ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        let signUp = SignInViewController()
-        signUp.roundedBttnWithShadow(Bttn: signUpBttn)
+        SignInViewController().roundedBttnWithShadow(Bttn: signUpBttn)
         self.hideKeyboardWhenTappedAround()
         signUpConfigurator.configure(signUpViewController: self)
         hideIndicator()
     }
-    
+    //MARK:-Actions
     @IBAction func signUpClicked(_ sender: Any) {
         guard let name = nameLabel.text else {return}
         guard let email = emailLabel.text else {return}
@@ -43,25 +42,12 @@ class SignUpViewController: UIViewController,signUpView{
             return
         }
     }
-    
-//    func navigateToSignInVC() {
-//        self.navigationController?.popViewController(animated: true)
-//    }
+    //MARK:-Functions
     func hideIndicator() {
         signUpLoadingIndicator.isHidden = true
     }
-//    func showAlert() {
-//        let Alert = UIAlertController(title: "Successful Operation", message: "Your account has been successfully created!", preferredStyle: .alert)
-//        let Action = UIAlertAction(title: "Ok", style: .default) { (Action) in
-//            self.navigateToSignInVC()
-//
-//        }
-//        Alert.addAction(Action)
-//        present(Alert,animated: true,completion: nil)
-    }
-
-    
-//}
+}
+//MARK:-Extension
 extension UIViewController {
     
     func hideKeyboardWhenTappedAround() {

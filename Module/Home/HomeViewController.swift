@@ -14,16 +14,16 @@ protocol fromHomeToListingProtocol {
 protocol HomeView:AnyObject{
     func reloadData()
 }
-
 class HomeViewController: UIViewController,HomeView {
+    //MARK:-Variables
     var homeToListingDelegate:fromHomeToListingProtocol?
     var presenter:RoomFetching!
+    //MARK:-Outlets
     @IBOutlet weak var tableView: UITableView!
-    
+    //MARK:-View Functions
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true,animated: true)
-
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -37,8 +37,6 @@ class HomeViewController: UIViewController,HomeView {
         tableView.delegate = self
         tableView.dataSource = self
         presenter.fetchRooms()
-
-
     }
     func reloadData() {
         tableView.reloadData()
@@ -49,7 +47,6 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.getRoomsCount()
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! HomeCells
         let Title = presenter.getItem(atIndex: indexPath.row).title
@@ -65,18 +62,5 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource {
         let room = presenter.getItem(atIndex: indexPath.row)
         self.presenter.rowIsSelected(room: room)
         
-        
-        
-        
-        
-        
-//        navigateToListingViewController(room: room)
     }
-//    func navigateToListingViewController (room: RoomData) {
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//        let listingViewController = storyBoard.instantiateViewController(identifier: "listingViewController") as! ListingViewController
-//        listingViewController.room = room
-//        navigationController?.pushViewController(listingViewController, animated: true)
-//    }
-    
 }

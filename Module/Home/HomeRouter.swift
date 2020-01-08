@@ -20,8 +20,6 @@ class HomeRouterImplementation:HomeRouter {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let listingViewController = storyBoard.instantiateViewController(identifier: "listingViewController") as! ListingViewController
         listingViewController.room = room
-            homeViewController.navigationController?.pushViewController(listingViewController, animated: true)
+        homeViewController.navigationController?.pushViewController(listingViewController, animated: true)
     }
-    
-    
 }

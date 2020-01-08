@@ -19,17 +19,13 @@ class signUpRouterImplementation:signUpRouter{
     }
     func navigateToSignInVC() {
         signUpViewController.navigationController?.popViewController(animated: true)
-
     }
-    
     func showAlert() {
         let Alert = UIAlertController(title: "Successful Operation", message: "Your account has been successfully created!", preferredStyle: .alert)
         let Action = UIAlertAction(title: "Ok", style: .default) { (Action) in
             self.navigateToSignInVC()
         }
-            Alert.addAction(Action)
+        Alert.addAction(Action)
         signUpViewController.present(Alert,animated: true,completion: nil)
-}
-    
-    
+    }
 }
