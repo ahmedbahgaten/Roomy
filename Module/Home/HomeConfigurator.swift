@@ -7,10 +7,11 @@
 //
 
 import Foundation
-class Homeconfigurator {
+class HomeConfigurator {
     static func configure(homeViewController:HomeViewController) {
         let router = HomeRouterImplementation(homeViewController: homeViewController)
         let presenter = RoomFetchingPresenter(roomView: homeViewController, router: router)
         homeViewController.presenter = presenter
+        
     }
 }

@@ -11,8 +11,11 @@ import UIKit
 protocol signUpRouter {
     func showAlert()
     func navigateToSignInVC()
+    func navigateToLogin()
 }
 class signUpRouterImplementation:signUpRouter{
+  
+    
     var signUpViewController:SignUpViewController!
     init(signUpViewController:SignUpViewController) {
         self.signUpViewController = signUpViewController
@@ -28,4 +31,8 @@ class signUpRouterImplementation:signUpRouter{
         Alert.addAction(Action)
         signUpViewController.present(Alert,animated: true,completion: nil)
     }
+   func navigateToLogin() {
+         let loginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SignIn") as SignInViewController
+               signUpViewController.navigationController?.pushViewController(loginViewController, animated: true)
+     }
 }

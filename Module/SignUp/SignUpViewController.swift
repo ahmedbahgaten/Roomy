@@ -42,6 +42,10 @@ class SignUpViewController: UIViewController,signUpView{
             return
         }
     }
+    @IBAction func alreadyHaveAccount(_ sender: Any) {
+        presenter.navigateToLogin()
+    }
+    
     //MARK:-Functions
     func hideIndicator() {
         signUpLoadingIndicator.isHidden = true

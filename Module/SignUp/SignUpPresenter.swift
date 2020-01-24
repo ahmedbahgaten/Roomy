@@ -11,6 +11,7 @@ import Foundation
 protocol SignUpPresenter {
     var signUpView:signUpView? { get set }
     func signUp(name:String,email:String,password:String)
+    func navigateToLogin()
 }
 class signUpPresenterImplementation:SignUpPresenter {
     init(signUpView:signUpView,router:signUpRouter) {
@@ -19,6 +20,7 @@ class signUpPresenterImplementation:SignUpPresenter {
     }
     var router:signUpRouter!
     weak var signUpView: signUpView?
+ 
     func signUp(name:String,email: String, password: String) {
         NetworkManager.signUp(name: name, email: email, password: password) { (responseServer,Error) in
             guard let ServerResponse = responseServer else {return}
@@ -31,4 +33,9 @@ class signUpPresenterImplementation:SignUpPresenter {
             }
         }
     }
+    func navigateToLogin() {
+        router.navigateToLogin()
+    }
+
+   
 }

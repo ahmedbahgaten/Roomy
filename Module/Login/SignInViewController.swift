@@ -48,6 +48,10 @@ class SignInViewController: UIViewController,LoginView{
             return
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.navigationBar.isHidden = true
+    }
     override  func viewDidLoad() {
         super.viewDidLoad()
         roundedBttnWithShadow(Bttn: SignInBttn)

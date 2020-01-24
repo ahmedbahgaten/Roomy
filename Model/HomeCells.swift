@@ -16,7 +16,7 @@ class HomeCells: UITableViewCell {
     @IBOutlet weak var ImageView1: UIImageView!
     @IBOutlet weak var ImageView2: UIImageView!
     @IBOutlet weak var ImageView3: UIImageView!
-    @IBOutlet weak var Price: UILabel!
+    @IBOutlet weak var price: UILabel!
     @IBOutlet weak var Description: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +27,7 @@ class HomeCells: UITableViewCell {
         Adress0.text = Address0
         Adress1.text = Address1
         Description.text = DescriptionText
+        price.text = Price
         ImageView1.kf.setImage(with: URL(string: ImageViewURL), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
         ImageView2.kf.setImage(with: URL(string: ImageViewURL), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
         ImageView3.kf.setImage(with: URL(string: ImageViewURL), placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)

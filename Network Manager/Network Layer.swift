@@ -11,7 +11,7 @@ import Alamofire
 
 class  NetworkManager {
     //MARK: -Login Function
-    static func login (email:String,password:String,completionHandler:@escaping (serverResponse? , Error?) -> ()) {
+    static func login (email:String,password:String,completionHandler:@escaping (loginServerResponse? , Error?) -> ()) {
         let loginRequest = AuthenticationRouter.login(email: email, password:password)
         AF.request(loginRequest).responseJSON { (response) in
             switch response.result {
@@ -19,7 +19,7 @@ class  NetworkManager {
              guard let responseData = response.data else {return}
                 do {
                     let decoder = JSONDecoder()
-                    let data = try decoder.decode(serverResponse.self, from: responseData)
+                    let data = try decoder.decode(loginServerResponse.self, from: responseData)
                     completionHandler(data,nil)
                 } catch {
                     print("Whoops, an error occured: \(error)")
@@ -31,7 +31,7 @@ class  NetworkManager {
         }
     }
     //MARK: -SignUp function
-    static func signUp (name:String ,email:String,password:String , completionHandler:@escaping (serverResponse?,Error?) -> Void) {
+    static func signUp (name:String ,email:String,password:String , completionHandler:@escaping (loginServerResponse?,Error?) -> Void) {
         let signUpRequest = AuthenticationRouter.signUp(name: name, email: email, password: password)
         AF.request(signUpRequest).responseJSON { (response) in
             switch response.result {
@@ -39,7 +39,7 @@ class  NetworkManager {
                 guard let responseData = response.data else {return}
                 do {
                     let decoder = JSONDecoder()
-                    let data = try decoder.decode(serverResponse.self, from: responseData) 
+                    let data = try decoder.decode(loginServerResponse.self, from: responseData) 
                     completionHandler(data,nil)
                 } catch {
                     print("Whoops, an error occured: \(error)")
@@ -61,9 +61,10 @@ class  NetworkManager {
                 guard let responseData = response.data else {return}
                 do {
                     let decoder = JSONDecoder()
-                    let data = try decoder.decode([RoomData].self, from: responseData)
-                    completionHandler(data, nil)
+                    let roomData = try decoder.decode([RoomData].self, from: responseData)
+                    completionHandler(roomData, nil)
                 } catch {
+                    completionHandler(nil,error)
                     print("Whoops, an error occured: \(error)")
                 }
             case.failure(let error):

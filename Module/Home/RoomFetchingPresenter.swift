@@ -14,23 +14,28 @@ protocol RoomFetching {
     func getRoomsCount() -> Int
     func getItem(atIndex: Int) -> RoomData
     func rowIsSelected(room:RoomData)
+    func navigateToLogin()
 }
 //MARK:-
 class RoomFetchingPresenter:RoomFetching {
-    
     let router:HomeRouter!
+    weak var RoomView: HomeView!
     init(roomView:HomeView,router:HomeRouter) {
         self.router = router
         self.RoomView = roomView
     }
-    weak var RoomView: HomeView!
     private var rooms = [RoomData]()
     
     func fetchRooms() {
-        NetworkManager.roomFetching { (rooms,error) in
-            guard let myrooms = rooms else {return}
-            self.rooms = myrooms
-            self.RoomView.reloadData()
+        NetworkManager.roomFetching { [weak self] (rooms,error) in
+            if error != nil {
+                self?.router.navigationToLogin()
+            }
+            else {
+                guard let myrooms = rooms else {return}
+                self?.rooms = myrooms
+            self?.RoomView.reloadData()
+        }
         }
     }
     func getRoomsCount() -> Int {
@@ -42,5 +47,8 @@ class RoomFetchingPresenter:RoomFetching {
     func rowIsSelected(room: RoomData) {
         self.router.navigateToListingViewController(room: room)
     }
+    func navigateToLogin() {
+        self.router.navigationToLogin()
+     }
     
 }

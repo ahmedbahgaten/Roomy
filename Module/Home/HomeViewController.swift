@@ -20,19 +20,20 @@ class HomeViewController: UIViewController,HomeView {
     var presenter:RoomFetching!
     //MARK:-Outlets
     @IBOutlet weak var tableView: UITableView!
+    
     //MARK:-View Functions
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true,animated: true)
     }
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(true)
+        navigationController?.setNavigationBarHidden(false,animated: true)
     }
     //MARK:-ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        Homeconfigurator.configure(homeViewController: self)
+        HomeConfigurator.configure(homeViewController: self)
         tableView.register(UINib(nibName: "HomeCells", bundle: nil), forCellReuseIdentifier: "MyCell")
         tableView.delegate = self
         tableView.dataSource = self
@@ -41,6 +42,17 @@ class HomeViewController: UIViewController,HomeView {
     func reloadData() {
         tableView.reloadData()
     }
+    @IBAction func logOutButtonTapped(_ sender: Any) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let logOutAction = UIAlertAction(title: "Log Out", style: .destructive) { (action) in
+            self.presenter.navigateToLogin()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        actionSheet.addAction(logOutAction)
+        actionSheet.addAction(cancelAction)
+        present(actionSheet,animated: true,completion: nil)
+    }
+    
 }
 //MARK:-HomeVC Extension
 extension HomeViewController:UITableViewDelegate,UITableViewDataSource {

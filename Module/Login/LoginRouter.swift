@@ -12,6 +12,8 @@ protocol loginRouter {
     func navigateToHome()
 }
 class LoginRouterImplementation :loginRouter {
+ 
+    
     var loginViewController:SignInViewController!
     init(loginViewController:SignInViewController) {
         self.loginViewController = loginViewController

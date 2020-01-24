@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct serverResponse:Codable {
+struct loginServerResponse:Codable {
     let message:String?
     let auth_token:String?
 }

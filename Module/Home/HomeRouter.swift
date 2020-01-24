@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 protocol HomeRouter {
     func navigateToListingViewController(room:RoomData)
+    func navigationToLogin()
 }
 class HomeRouterImplementation:HomeRouter {
     let homeViewController:HomeViewController!
@@ -21,5 +22,9 @@ class HomeRouterImplementation:HomeRouter {
         let listingViewController = storyBoard.instantiateViewController(identifier: "listingViewController") as! ListingViewController
         listingViewController.room = room
         homeViewController.navigationController?.pushViewController(listingViewController, animated: true)
+    }
+    func navigationToLogin() {
+        let loginViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SignIn") as SignInViewController
+        homeViewController.navigationController?.pushViewController(loginViewController, animated: true)
     }
 }
