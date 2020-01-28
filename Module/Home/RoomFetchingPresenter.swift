@@ -15,6 +15,7 @@ protocol RoomFetching {
     func getItem(atIndex: Int) -> RoomData
     func rowIsSelected(room:RoomData)
     func navigateToLogin()
+    func deleteUserDefaultsData()
 }
 //MARK:-
 class RoomFetchingPresenter:RoomFetching {
@@ -50,5 +51,11 @@ class RoomFetchingPresenter:RoomFetching {
     func navigateToLogin() {
         self.router.navigationToLogin()
      }
+    func deleteUserDefaultsData() {
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        print(Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+    }
     
 }

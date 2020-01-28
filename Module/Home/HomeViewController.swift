@@ -46,6 +46,7 @@ class HomeViewController: UIViewController,HomeView {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let logOutAction = UIAlertAction(title: "Log Out", style: .destructive) { (action) in
             self.presenter.navigateToLogin()
+            self.presenter.deleteUserDefaultsData()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         actionSheet.addAction(logOutAction)

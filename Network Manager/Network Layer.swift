@@ -50,7 +50,7 @@ class  NetworkManager {
         }
     }
     //MARK: -RoomFetching function
-    static func roomFetching (completionHandler: @escaping ([RoomData]?,Error?) -> Void){
+    static func roomFetching (completionHandler: @escaping ([RoomData]?,Error?) -> Void){ 
         guard let url = URL(string: "https://roomy-application.herokuapp.com/rooms") else {return}
         let Token = UserDefaults.standard.value(forKey: "Token") as! String
         let Headers:HTTPHeaders = ["Authorization":Token]
