@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 struct RoomData:Codable {
     let id: Int?
     let title:String?
@@ -18,4 +17,6 @@ struct RoomData:Codable {
     let created_at: String?
     let updated_at: String?
     let message:String?
-}
+    
+    
+    }
