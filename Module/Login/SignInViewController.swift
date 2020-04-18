@@ -63,6 +63,7 @@ class SignInViewController: UIViewController,LoginView{
         self.navigationController?.isNavigationBarHidden = true
         LoginConfigurator.configure(loginViewController: self)
         hideIndicator()
+       print("Hello")
     }
     
     
@@ -85,7 +86,7 @@ class SignInViewController: UIViewController,LoginView{
         viewType.layer.shadowOffset = CGSize(width: 0, height: 1)
     }
     func navigateToHomeVC() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil) // navigating to home screen
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let homeViewController = storyBoard.instantiateViewController(identifier: "homeVC") as! HomeViewController
         self.navigationController?.pushViewController(homeViewController, animated: true)
     }

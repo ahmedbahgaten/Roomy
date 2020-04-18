@@ -24,7 +24,6 @@ enum AuthenticationRouter :URLRequestConvertible {
                 return URL(string: "https://roomy-application.herokuapp.com/rooms")!
             }
         }()
-        
         let parameter: [String:Any]? = {
             switch self {
             case .login(let email, let password):
@@ -35,7 +34,6 @@ enum AuthenticationRouter :URLRequestConvertible {
             case .roomFetching:
                 return nil
             }
-            
         }()
         let method: HTTPMethod = {
             switch self {
@@ -44,31 +42,9 @@ enum AuthenticationRouter :URLRequestConvertible {
             case .roomFetching:
                 return .get
             }
-//            let headers: HTTPHeaders = {
-//                switch self {
-//                case.roomFetching:
-//                    let Token = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0MjIsImV4cCI6MTU3NjIzNzAxNn0.J2ismT6VWZVrV4vTw6c4dzVTd8ygimYZ8djdkx4N18I"
-//    
-//                     let Headers:HTTPHeaders = ["Authorization":Token]
-//                    return Headers
-//                case .login(let email, let password):
-//                    return nil 
-//                case .signUp(let name, let email, let password):
-//                    return nil
-//                    
-//                }
-//            }()
-
         }()
-        let urlRequest = try! URLRequest( url : url , method : method)
-//
-//        switch self {
-//        case .roomFetching:
-//            urlRequest.addValue(<#T##value: String##String#>, forHTTPHeaderField: <#T##String#>)
-//        case .login:
-//            break
-//        }
         
+        let urlRequest = try! URLRequest( url : url , method : method)
         let encoding:ParameterEncoding = JSONEncoding.default
         return try! encoding.encode(urlRequest , with : parameter)
     }

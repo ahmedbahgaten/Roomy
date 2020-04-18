@@ -19,7 +19,12 @@ class HomeViewController: UIViewController,HomeView {
     var homeToListingDelegate:fromHomeToListingProtocol?
     var presenter:RoomFetching!
     //MARK:-Outlets
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
     
     //MARK:-View Functions
     override func viewWillAppear(_ animated: Bool) {
@@ -35,8 +40,8 @@ class HomeViewController: UIViewController,HomeView {
         super.viewDidLoad()
         HomeConfigurator.configure(homeViewController: self)
         tableView.register(UINib(nibName: "HomeCells", bundle: nil), forCellReuseIdentifier: "MyCell")
-        tableView.delegate = self
-        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
         presenter.fetchRooms()
     }
     func reloadData() {
