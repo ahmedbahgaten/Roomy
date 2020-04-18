@@ -63,7 +63,7 @@ class SignInViewController: UIViewController,LoginView{
         self.navigationController?.isNavigationBarHidden = true
         LoginConfigurator.configure(loginViewController: self)
         hideIndicator()
-       
+       print("Hello")
     }
     
     
